@@ -11,6 +11,10 @@ class TestPlugin {
     return version;
   }
 
+  static void initModel() {
+    _channel.invokeMethod('initModel');
+    return;
+  }
   static void startRecognize() {
     _channel.invokeMethod('startRecognize');
     return;

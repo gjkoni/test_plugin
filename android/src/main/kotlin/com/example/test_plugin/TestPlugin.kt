@@ -80,7 +80,10 @@ class TestPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "getPlatformVersion") {
             result.success("Android ${android.os.Build.VERSION.RELEASE}")
-        } else if (call.method == "startRecognize") {
+        } else if (call.method == "initModel") {
+            initModel(null)
+            result.success("")
+        }else if (call.method == "startRecognize") {
             startRecognize()
             result.success("")
         } else if (call.method == "stopRecognize") {
@@ -131,11 +134,11 @@ class TestPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
     }
 
 
-    private fun initModel(initializationCompletedCallback: () -> Unit) {
+    private fun initModel(initializationCompletedCallback: (() -> Unit)?) {
         StorageService.unpack(activity, "model-cn", "model",
             {
                 this.model = it
-                initializationCompletedCallback()
+                initializationCompletedCallback?.invoke()
             },
             { exception: IOException ->
                 Log.e(TAG,"Failed to unpack the model" + exception.message)
