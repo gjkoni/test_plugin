@@ -80,7 +80,7 @@ dependencies {
     implementation 'net.java.dev.jna:jna:5.8.0@aar'
     implementation group: 'com.alphacephei', name: 'vosk-android', version: '0.3.23'
 // https://mvnrepository.com/artifact/com.alibaba/fastjson
-    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.18.android'
 
 }
 
